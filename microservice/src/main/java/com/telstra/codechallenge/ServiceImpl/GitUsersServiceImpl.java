@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class GitUsersServiceImpl implements GitUsersService {
     public List<Items> getUsersInfo(Integer number) {
         log.info("Inside GitUsersServiceImpl.getUsersInfo with number value : {}", number);
         UserInformation userInformation = webServiceClient.getUsersData();
-        if (!userInformation.getItems().isEmpty()) {
+        if (userInformation != null && !CollectionUtils.isEmpty(userInformation.getItems())) {
             log.info("Inside if block to check whether the items list is empty");
             if (number <= userInformation.getItems().size()) {
                 log.info("Inside if block number is <= item list size and returned the list successfully ");
