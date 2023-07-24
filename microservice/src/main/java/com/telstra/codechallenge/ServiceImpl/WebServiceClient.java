@@ -36,7 +36,7 @@ public class WebServiceClient {
             userInformation = response.getBody();
             log.info("outside of try block");
         } catch (RuntimeException ex) {
-            log.info("Inside catch block to call external api");
+            log.info("Inside catch block, An exception occurred");
             if (ex instanceof HttpClientErrorException.UnprocessableEntity) {
                 log.info("HttpClientErrorException.UnprocessableEntity exception occurred");
                 throw new ExceptionClass(Constants.ERROR_CODE3, Constants.Error_RESPONSE422, HttpStatus.UNPROCESSABLE_ENTITY);
